@@ -5,11 +5,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView #Generi
 from django.urls import reverse_lazy
 from .forms import PageForm
 
-
-
-
-
-
 # Create your views here.
 class PageListView(ListView):
     model = Page

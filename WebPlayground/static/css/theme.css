@@ -1,0 +1,135 @@
+/* static/css/theme.css */
+
+/* Tema Claro (por defecto) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #212529;
+  --secondary-text-color: #6c757d;
+  --primary-color: #007bff;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --navbar-bg: #f8f9fa; /* Similar a .bg-light de Bootstrap */
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+}
+
+/* Tema Oscuro */
+:root.dark-mode {
+  --bg-color: #1a1a1a; /* Un gris oscuro, no negro puro */
+  --text-color: #e0e0e0;
+  --secondary-text-color: #adb5bd;
+  --primary-color: #4dabf7; /* Un azul más claro para contraste */
+  --border-color: #444444;
+  --card-bg: #2c2c2c;
+  --navbar-bg: #343a40; /* Similar a .bg-dark de Bootstrap */
+  --link-color: #4dabf7;
+  --link-hover-color: #1e90ff;
+}
+
+/* Aplicar estilos base */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Ejemplo de cómo aplicar a componentes (puedes expandir esto) */
+.card { /* Si usas cards personalizadas o quieres un estilo base */
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  /* Asegúrate que el color del texto del botón contraste bien */
+}
+
+/* Sobrescribir clases de Bootstrap para el tema oscuro */
+:root.dark-mode .bg-light {
+  background-color: var(--navbar-bg) !important; /* Usa tu variable de navbar */
+  color: var(--text-color) !important;
+}
+
+:root.dark-mode .navbar-dark.bg-dark { /* Específico para tu navbar */
+  background-color: var(--navbar-bg) !important; /* Usa tu variable de navbar-bg para el modo oscuro */
+}
+
+:root.dark-mode .navbar-light .navbar-brand,
+:root.dark-mode .navbar-light .nav-link,
+:root.dark-mode .navbar-light .navbar-toggler-icon {
+  color: var(--text-color);
+}
+
+:root.dark-mode .navbar-dark .navbar-brand, /* Para tu navbar actual que es .navbar-dark */
+:root.dark-mode .navbar-dark .nav-link {
+  color: var(--text-color) !important; /* Asegurar que el texto del navbar sea visible */
+}
+/* Añade más sobrescrituras para otros componentes de Bootstrap según necesites */
+
+:root.dark-mode table {
+    color: var(--text-color); /* Para que el texto de las tablas sea legible en modo oscuro */
+}
+
+:root.dark-mode .form-control { /* Estilos para inputs en modo oscuro */
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+:root.dark-mode .form-control::placeholder {
+    color: var(--secondary-text-color);
+}
+
+:root.dark-mode .form-control:focus {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color), 0.25);
+}
+
+/* Estilos para el texto dentro de los `div` en page_list.html y page_update_form.html */
+:root.dark-mode .col-md-9.mx-auto div p,
+:root.dark-mode .col-md-9.mx-auto div h2 {
+    color: var(--text-color);
+}
+
+:root.dark-mode .col-md-9.mx-auto div p a {
+    color: var(--link-color);
+}
+
+:root.dark-mode .col-md-9.mx-auto div p a:hover {
+    color: var(--link-hover-color);
+}
+
+/* Para el mensaje de "Pagina actualizada correctamente" */
+:root.dark-mode p[style*="color: green;"] {
+    color: #28a745 !important; /* Mantener un verde legible o ajustarlo */
+}
+
+/* Para el footer */
+:root.dark-mode .footer .text-muted {
+    color: var(--secondary-text-color) !important;
+}
+
+/* Estilo para el botón/icono de cambio de tema */
+/* Primero, nos aseguramos de que el propio enlace (<a>) no imponga un color azul.
+   Lo establecemos en el color gris deseado. */
+#theme-toggle-btn.nav-link {
+    color: #868e96 !important; /* Color gris (similar a .text-muted de Bootstrap) */
+}
+
+/* Luego, nos aseguramos de que el icono (<i>) herede este color gris de su padre (<a>). */
+#theme-toggle-btn i.fa {
+    font-size: 1.15rem; /* Ajusta el tamaño según tu preferencia */
+    vertical-align: text-bottom; /* Ayuda a alinear mejor el icono con el texto si lo hubiera */
+    color: inherit !important; /* Hereda el color del elemento padre (el <a> que acabamos de poner gris) */
+}
