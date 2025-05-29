@@ -133,7 +133,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth redirect
-LOGIN_REDIRECT_URL = 'pages:pages'
+#LOGIN_REDIRECT_URL = 'pages:pages'
 LOGOUT_REDIRECT_URL = 'home'
 
 # Email
@@ -144,4 +144,5 @@ else:
     # Aqui hay que configurar un email real para producción
     pass
 
-#
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -50,14 +50,17 @@
                 <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
               </li>
             {%  else %}
-              <li class="nav-item">  
+              <li class="nav-item"> 
+                 <li class="nav-item">
+                <a id= "logout-form"class="nav-link nav-item" href="{% url 'profile' %}">Perfil</a>
+              </li>
                 <form id="logout-form" method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
                   <button type="submit">
                     Cerrar Sesion
-                  </button>
-                </form>
-              </li>              
+                  </button>                  
+                </form>                
+              </li>                            
             {% endif %}
           </ul>
           <!-- Icono de cambio de tema -->
