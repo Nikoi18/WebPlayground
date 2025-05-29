@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{% endblock %}</title>
     {% load static %}
-    <!-- Script para aplicar el tema inmediatamente -->
     <script>
         (function() {
             const theme = localStorage.getItem('theme');
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark-mode');
             } else {
-                document.documentElement.classList.remove('dark-mode'); // Asegura el modo claro por defecto
+                document.documentElement.classList.remove('dark-mode'); 
             }
         })();
     </script>
@@ -43,11 +42,23 @@
             </li>
           </ul>
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/">
-                {% if request.user.is_staff %}Admin{% else %}Acceder{% endif %}
-              </a>
-            </li>
+            {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
+              </li>
+            {%  else %}
+              <li class="nav-item">  
+                <form id="logout-form" method="post" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit">
+                    Cerrar Sesion
+                  </button>
+                </form>
+              </li>              
+            {% endif %}
           </ul>
           <!-- Icono de cambio de tema -->
           <a href="#" id="theme-toggle-btn" class="nav-link ml-2 my-2 my-lg-0" role="button" title="Cambiar tema">
