@@ -44,7 +44,7 @@
                 <a class="nav-link" href="{% url 'profiles:list' %}">Perfiles</a>
               </li>
           </ul>
-          <ul class="navbar-nav">
+          <ul class="navbar-nav align-items-center"> <!-- align-items-center para alinear verticalmente el botón de logout con los links -->
             {% if not request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
@@ -53,17 +53,20 @@
                 <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
               </li>
             {%  else %}
-              <li class="nav-item"> 
-                 <li class="nav-item">
-                <a id= "logout-form"class="nav-link nav-item" href="{% url 'profile' %}">Perfil</a>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'messenger:list' %}">Mensajes</a>
               </li>
-                <form id="logout-form" method="post" action="{% url 'logout' %}">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Perfil</a>
+              </li>
+              <li class="nav-item">
+                <form id="logout-form-actual" method="post" action="{% url 'logout' %}"> <!-- ID cambiado para ser único -->
                   {% csrf_token %}
-                  <button type="submit">
+                  <button type="submit" class="btn btn-link nav-link"> <!-- Clases para que parezca un link de nav -->
                     Cerrar Sesion
-                  </button>                  
-                </form>                
-              </li>                            
+                  </button>
+                </form>
+              </li>
             {% endif %}
           </ul>
           <!-- Icono de cambio de tema -->
@@ -110,8 +113,7 @@
         }
 
         // Establecer el icono inicial y los atributos ARIA al cargar la página
-        const initialTheme = localStorage.getItem('theme') || (document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
-        updateThemeToggleVisuals(initialTheme);
+        updateThemeToggleVisuals(localStorage.getItem('theme') || 'light');
 
         if (toggleLink) {
           toggleLink.addEventListener('click', function(event) {
